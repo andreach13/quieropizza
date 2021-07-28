@@ -73,38 +73,38 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Su Carrito</span>
-                                <div class="qty">1</div>
+                                <div class="qty">2</div>
                             </a>
                             <div class="cart-dropdown">
                                 <div class="cart-list">
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product01.png" alt="">
+                                            <img src="./img/accesorios.png" alt="">
                                         </div>
                                         <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                            <h3 class="product-name"><a href="#">Set de Cadenas de Acero</a></h3>
+                                            <h4 class="product-price"><span class="qty">1x</span>L.295.00</h4>
                                         </div>
                                         <button class="delete"><i class="fa fa-close"></i></button>
                                     </div>
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
+                                            <img src="./img/monedero.jpg" alt="">
                                         </div>
                                         <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                            <h3 class="product-name"><a href="#">Monedero Loki</a></h3>
+                                            <h4 class="product-price"><span class="qty">1x</span>L.699.00</h4>
                                         </div>
                                         <button class="delete"><i class="fa fa-close"></i></button>
                                     </div>
                                 </div>
                                 <div class="cart-summary">
-                                    <small>3 Item(s) selected</small>
-                                    <h5>SUBTOTAL: $2940.00</h5>
+                                    <small>1 Item(s) selected</small>
+                                    <h5>SUBTOTAL: L.994.00</h5>
                                 </div>
                                 <div class="cart-btns">
-                                    <a href="#">View Cart</a>
-                                    <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="#">Ver Carrito</a>
+                                    <a href="#">Revisar  <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -182,12 +182,17 @@
                         <!-- tab -->
                         <div id="tab1" class="tab-pane active">
                             <div class="products-slick" data-nav="#slick-nav-1">
-                              @foreach (var producto in Model.Where(r=> r.Categoria.Descripcion == "Vestidos"))
+                              @foreach (var producto in Model
+                                  .Where(r=> r.Categoria.Descripcion == "Vestidos")
+                                  .Take(1)
+                                  .OrderBy(r=> Guid.NewGuid()))                                  
                               {
+                                  <!-- new guid representa un identificador unico -->
+
                                   <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/vestidos.png" alt="">
+                                        <img src="@(ViewBag.adminWebsiteUrl + producto.UrlImagen)" alt="">
                                         <div class="product-label">
                                             <span class="sale">-15%</span>
                                             <span class="new">Usado</span>
@@ -216,28 +221,32 @@
                               }
                                 <!-- /product -->
                                 
-                                @foreach (var producto2 in Model.Where(r => r.Categoria.Descripcion == "Accesorios"))
+                                @foreach (var producto2 in Model
+                                    .Where(r => r.Categoria.Descripcion == "Accesorios")
+                                    .Take(1)
+                                    .OrderBy(r=> Guid.NewGuid())
+                                    )
                                 {
                                 <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="./img/accesorios.png" alt="">
+                                            <img src="@(ViewBag.adminWebsiteUrl + producto2.UrlImagen)"  alt="" >
                                             <div class="product-label">
-                                                <span class="sale">-30%</span>
                                                 <span class="new">NEW</span>
                                             </div>
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">Accesorios</p>
                                             <h3 class="product-name"><a href="#">@producto2.Descripcion</a></h3>
-                                            <h4 class="product-price">L. @producto2.Precio <del class="product-old-price">L. 375.00</del></h4>
+                                            <h4 class="product-price">L. @producto2.Precio </h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> <!--ranking de estrellas-->>
+                                                <i class="fa fa-star"></i> 
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-o"></i>
                                             </div>
+                                            <!--ranking de estrellas-->
                                             <div class="product-btns">
                                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a lista de deseos</span></button>
                                                 <!--button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></!--button>-->
@@ -251,12 +260,16 @@
                                 }
                                 <!-- /product -->
 
-                                @foreach (var producto3 in Model.Where(r => r.Categoria.Descripcion == "Jeans"))
+                                @foreach (var producto3 in Model
+                                .Where(r => r.Categoria.Descripcion == "Jeans")
+                                .Take(1)
+                                .OrderBy(r=> Guid.NewGuid())
+                                )
                                 {
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/jeans.png" alt="">
+                                        <img src="@(ViewBag.adminWebsiteUrl + producto3.UrlImagen)" alt="">
                                         <div class="product-label">
                                             <span class="new">NEW</span>
                                         </div>
@@ -268,7 +281,7 @@
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i> <!--ranking de estrellas-->>
+                                            <i class="fa fa-star"></i> <!--ranking de estrellas-->
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
                                         </div>
@@ -285,12 +298,16 @@
                                 }
                                 <!-- /product -->
 
-                                @foreach (var producto4 in Model.Where(r => r.Categoria.Descripcion == "Relojeria"))
-                                {                                
+                                @foreach (var producto4 in Model
+                                    .Where(r => r.Categoria.Descripcion == "Relojeria")
+                                    .Take(1)
+                                    .OrderBy(r => Guid.NewGuid())
+                                    )
+                                {
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/fossil.png" alt="">
+                                        <img src="@(ViewBag.adminWebsiteUrl + producto4.UrlImagen)" alt="">
                                         <div class="product-label">
                                             <span class="new">NEW</span>
                                         </div>
@@ -319,12 +336,16 @@
                                 }
                                 <!-- /product -->
 
-                                @foreach (var producto5 in Model.Where(r => r.Categoria.Descripcion == "Ropa para Caballeros"))
+                                @foreach (var producto5 in Model
+                                    .Where(r => r.Categoria.Descripcion == "Ropa para Caballeros")
+                                    .Take(1)
+                                    .OrderBy(r => Guid.NewGuid())
+                                    )
                                 {
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/polo.png" alt="">
+                                        <img src="@(ViewBag.adminWebsiteUrl + producto5.UrlImagen)" alt="">
                                         <div class="product-label">
                                             <span class="sale">-50%</span>
                                             <span class="new">NEW</span>

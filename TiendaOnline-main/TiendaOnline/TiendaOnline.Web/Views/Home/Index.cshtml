@@ -167,12 +167,13 @@
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Vestidos</a></li>
                             <li><a data-toggle="tab" href="#tab1">Accesorios</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Cameras</a></li>
+                            <li><a data-toggle="tab" href="#tab1">Ropa</a></li>
                             <li><a data-toggle="tab" href="#tab1">Relojería</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
+
             <!-- /section title -->
             <!-- Products tab & slick -->
             <div class="col-md-12">
@@ -181,7 +182,9 @@
                         <!-- tab -->
                         <div id="tab1" class="tab-pane active">
                             <div class="products-slick" data-nav="#slick-nav-1">
-                                <!-- product -->
+                              @foreach (var producto in Model.Where(r=> r.Categoria.Descripcion == "Vestidos"))
+                              {
+                                  <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
                                         <img src="./img/vestidos.png" alt="">
@@ -192,8 +195,8 @@
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Vestidos</p>
-                                        <h3 class="product-name"><a href="#">Vestido de Fiesta</a></h3>
-                                        <h4 class="product-price">L.650.00 <del class="product-old-price">L.990.00</del></h4>
+                                        <h3 class="product-name"><a href="#">@producto.Descripcion</a></h3>
+                                        <h4 class="product-price">L. @producto.Precio <del class="product-old-price">L.990.00</del></h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -210,38 +213,46 @@
                                         <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
                                     </div>
                                 </div>
+                              }
                                 <!-- /product -->
+                                
+                                @foreach (var producto2 in Model.Where(r => r.Categoria.Descripcion == "Accesorios"))
+                                {
                                 <!-- product -->
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="./img/accesorios.png" alt="">
-                                        <div class="product-label">
-                                            <span class="sale">-30%</span>
-                                            <span class="new">NEW</span>
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img src="./img/accesorios.png" alt="">
+                                            <div class="product-label">
+                                                <span class="sale">-30%</span>
+                                                <span class="new">NEW</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+                                            <p class="product-category">Accesorios</p>
+                                            <h3 class="product-name"><a href="#">@producto2.Descripcion</a></h3>
+                                            <h4 class="product-price">L. @producto2.Precio <del class="product-old-price">L. 375.00</del></h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> <!--ranking de estrellas-->>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a lista de deseos</span></button>
+                                                <!--button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></!--button>-->
+                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Ver Producto</span></button>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
                                         </div>
                                     </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Accesorios</p>
-                                        <h3 class="product-name"><a href="#">Set de Cadenas de Acero</a></h3>
-                                        <h4 class="product-price">L. 250.00 <del class="product-old-price">L. 375.00</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i> <!--ranking de estrellas-->>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a lista de deseos</span></button>
-                                            <!--button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></!--button>-->
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Ver Producto</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
-                                    </div>
-                                </div>
+                                }
                                 <!-- /product -->
+
+                                @foreach (var producto3 in Model.Where(r => r.Categoria.Descripcion == "Jeans"))
+                                {
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
@@ -252,9 +263,14 @@
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Jeans</p>
-                                        <h3 class="product-name"><a href="#">Pepe Jeans</a></h3>
-                                        <h4 class="product-price">L.1200.00 </h4>
+                                        <h3 class="product-name"><a href="#">@producto3.Descripcion</a></h3>
+                                        <h4 class="product-price">L.@producto3.Precio </h4>
                                         <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i> <!--ranking de estrellas-->>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
                                         </div>
                                         <div class="product-btns">
                                             <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a lista de deseos</span></button>
@@ -266,7 +282,11 @@
                                         <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Añadir al Carrito</button>
                                     </div>
                                 </div>
+                                }
                                 <!-- /product -->
+
+                                @foreach (var producto4 in Model.Where(r => r.Categoria.Descripcion == "Relojeria"))
+                                {                                
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
@@ -277,8 +297,8 @@
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Reloj</p>
-                                        <h3 class="product-name"><a href="#">Reloj marca Fossil</a></h3>
-                                        <h4 class="product-price">L.5,499.00</h4>
+                                        <h3 class="product-name"><a href="#">@producto4.Descripcion</a></h3>
+                                        <h4 class="product-price">L. @producto4.Precio</h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -296,20 +316,24 @@
                                         <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
                                     </div>
                                 </div>
+                                }
                                 <!-- /product -->
+
+                                @foreach (var producto5 in Model.Where(r => r.Categoria.Descripcion == "Ropa para Caballeros"))
+                                {
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
                                         <img src="./img/polo.png" alt="">
                                         <div class="product-label">
-                                            <span class="sale">-20%</span>
+                                            <span class="sale">-50%</span>
                                             <span class="new">NEW</span>
                                         </div>
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Camisas</p>
-                                        <h3 class="product-name"><a href="#">Estilo Polo</a></h3>
-                                        <h4 class="product-price">L.380.00 <del class="product-old-price">$990.00</del></h4>
+                                        <h3 class="product-name"><a href="#">@producto5.Descripcion</a></h3>
+                                        <h4 class="product-price">L. @producto5.Precio <del class="product-old-price">L. 760.00</del></h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -327,7 +351,9 @@
                                         <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al Carrito</button>
                                     </div>
                                 </div>
-                                <!-- /product -->
+                                }
+                                <!-- /product -->                            
+
                             </div>
                             <div id="slick-nav-1" class="products-slick-nav"></div>
                         </div>

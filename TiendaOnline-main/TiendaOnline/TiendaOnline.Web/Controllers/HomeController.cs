@@ -13,7 +13,7 @@ namespace TiendaOnline.Web.Controllers
         public ActionResult Index()
         {
             var productosBL = new ProductosBL();
-            var listadeproductos = productosBL.ObtenerProductos();
+            var listadeproductos = productosBL.ObtenerProductosActivos();
 
             return View(listadeproductos);
         }
